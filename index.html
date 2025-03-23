@@ -3,81 +3,120 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Image Portfolio</title>
-    <!-- Bootstrap 5 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom Styles -->
-    <link rel="stylesheet" href="styles.css">
+    <title>MangoNFT</title>
+    <!-- Add TailwindCSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Video background styling */
+        .video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1; /* Ensure the video is behind the content */
+        }
+
+        .content {
+            position: relative;
+            z-index: 1; /* Ensure content appears above the video */
+        }
+
+        /* Square image class */
+        .square-image {
+            width: 100%;
+            aspect-ratio: 1; /* Forces the aspect ratio to be 1:1 (square) */
+            object-fit: cover; /* Ensures the image fills the square without distortion */
+        }
+
+    </style>
 </head>
-<body style="background-image: url('https://i.pinimg.com/736x/54/c3/0b/54c30b826b8ea90cfd7f65febda0b6c1.jpg'); background-size: cover; background-position: center center; background-attachment: fixed; background-repeat: no-repeat; height: 100vh;">
+<body class="bg-gray-900 text-white">
 
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <div class="container">
-        <a class="navbar-brand" href="#">Portfolio</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="#gallery">Gallery</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
+    <!-- Video Background -->
+    <video autoplay muted loop class="video-background">
+        <source src="https://v1.pinimg.com/videos/mc/720p/e8/59/cb/e859cb9ede570cd41bd3c07f0ad431f4.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
 
-<!-- Header Section -->
-<header class="header text-center text-white py-5">
-    <div class="container">
-        <h1 class="display-4">Welcome to My Image Portfolio</h1>
-        <p class="lead">Explore the world through my lens. Browse and enjoy my best images!</p>
-    </div>
-</header>
-
-<!-- Image Gallery Section -->
-<section id="gallery" class="gallery py-5">
-    <div class="container">
-        <h2 class="text-center mb-5">Image Gallery</h2>
-        <div class="row row-cols-1 row-cols-md-3 g-4">
-            <!-- Fixed Images -->
-            <div class="col">
-                <div class="card shadow-lg">
-                    <img src="https://picsum.photos/400/300?random=1" class="card-img-top" alt="Image 1">
+    <!-- Content Section -->
+    <div class="content container mx-auto px-6 py-12">
+        <!-- Slideshow Section (moved to the top) -->
+        <div class="relative mb-12">
+            <!-- Slideshow container -->
+            <div class="relative flex justify-center items-center">
+                <!-- Slides -->
+                <div id="nft-slideshow" class="flex overflow-hidden rounded-lg w-full max-w-[320px]">
+                    <img src="https://picsum.photos/400/800?random=1" alt="NFT 1" class="square-image flex-shrink-0 hidden">
+                    <img src="https://picsum.photos/500/400?random=2" alt="NFT 2" class="square-image flex-shrink-0 hidden">
+                    <img src="https://picsum.photos/400/400?random=3" alt="NFT 3" class="square-image flex-shrink-0 hidden">
+                    <img src="https://picsum.photos/400/1000?random=4" alt="NFT 4" class="square-image flex-shrink-0 hidden">
+                    <img src="https://picsum.photos/700/400?random=5" alt="NFT 5" class="square-image flex-shrink-0 hidden">
                 </div>
-            </div>
-            <div class="col">
-                <div class="card shadow-lg">
-                    <img src="https://picsum.photos/400/300?random=2" class="card-img-top" alt="Image 2">
-                </div>
-            </div>
-            <div class="col">
-                <div class="card shadow-lg">
-                    <img src="https://picsum.photos/400/300?random=3" class="card-img-top" alt="Image 3">
-                </div>
-            </div>
-            <div class="col">
-                <div class="card shadow-lg">
-                    <img src="https://picsum.photos/400/300?random=4" class="card-img-top" alt="Image 4">
-                </div>
-            </div>
-            <div class="col">
-                <div class="card shadow-lg">
-                    <img src="https://picsum.photos/400/300?random=5" class="card-img-top" alt="Image 5">
-                </div>
+                <!-- Next/Previous Buttons -->
+                <button id="prev-btn" class="absolute top-1/2 left-4 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full">
+                    &#60;
+                </button>
+                <button id="next-btn" class="absolute top-1/2 right-4 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full">
+                    &#62;
+                </button>
             </div>
         </div>
+
+        <!-- Header Section -->
+        <header class="text-center mb-12">
+            <h1 class="text-4xl font-semibold mb-4">Welcome to MangoNFT</h1>
+            <p class="text-xl">Explore, buy, and sell exclusive NFTs on our platform</p>
+        </header>
+
+        <!-- 5 NFT Images in a Row -->
+        <div class="grid grid-cols-5 gap-4 mb-12">
+            <img src="https://picsum.photos/400/800?random=1" alt="NFT 1" class="square-image rounded-lg shadow-lg">
+            <img src="https://picsum.photos/400/2321?random=2" alt="NFT 2" class="square-image rounded-lg shadow-lg">
+            <img src="https://picsum.photos/300/400?random=3" alt="NFT 3" class="square-image rounded-lg shadow-lg">
+            <img src="https://picsum.photos/1000/400?random=4" alt="NFT 4" class="square-image rounded-lg shadow-lg">
+            <img src="https://picsum.photos/400/400?random=5" alt="NFT 5" class="square-image rounded-lg shadow-lg">
+        </div>
     </div>
-</section>
 
-<!-- Footer Section -->
-<footer class="footer bg-dark text-white py-4 text-center">
-    <p>&copy; 2025 My Image Portfolio | Designed with ❤️</p>
-</footer>
+    <!-- JavaScript for Slideshow -->
+    <script>
+        let currentIndex = 0;
+        const slides = document.querySelectorAll("#nft-slideshow img");
+        const prevButton = document.getElementById("prev-btn");
+        const nextButton = document.getElementById("next-btn");
 
-<!-- Bootstrap 5 JS & Popper.js -->
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+        function changeSlide() {
+            // Hide all slides
+            slides.forEach(slide => slide.classList.add("hidden"));
+            
+            // Show the current slide
+            slides[currentIndex].classList.remove("hidden");
+        }
+
+        // Next Button
+        nextButton.addEventListener("click", () => {
+            currentIndex = (currentIndex + 1) % slides.length; // Move to next slide (wrap around)
+            changeSlide();
+        });
+
+        // Previous Button
+        prevButton.addEventListener("click", () => {
+            currentIndex = (currentIndex - 1 + slides.length) % slides.length; // Move to previous slide (wrap around)
+            changeSlide();
+        });
+
+        // Initialize the first slide
+        changeSlide();
+    </script>
+
 </body>
 </html>
