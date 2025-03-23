@@ -37,6 +37,75 @@
             object-fit: cover; /* Ensures the image fills the square without distortion */
         }
 
+        /* For NFT Carousel */
+        .carousel-nft-wrapper {
+            overflow: hidden;
+            width: 100%;
+        }
+
+        .carousel-nft {
+            display: flex;
+            animation: scrollCarousel 15s linear infinite; /* Make the animation continuous */
+        }
+
+        .carousel-nft .carousel-item {
+            flex: 0 0 20%; /* Each item takes 20% width (5 items per row) */
+            margin-right: 10px; /* Space between the items */
+        }
+
+        /* Keyframes for continuous scrolling */
+        @keyframes scrollCarousel {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-100%); /* Move the whole list of items to the left */
+            }
+        }
+
+        /* Slideshow Styling */
+        .slideshow-container {
+            position: relative;
+            max-width: 320px;
+            margin: 0 auto;
+        }
+
+        .slideshow {
+            display: flex;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+
+        .slideshow img {
+            width: 100%;
+            object-fit: cover;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .slideshow img.hidden {
+            opacity: 0;
+        }
+
+        /* Previous & Next Button Styles */
+        .slideshow-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        #prev-btn {
+            left: 10px;
+        }
+
+        #next-btn {
+            right: 10px;
+        }
     </style>
 </head>
 <body class="bg-gray-900 text-white">
@@ -49,17 +118,16 @@
 
     <!-- Content Section -->
     <div class="content container mx-auto px-6 py-12">
-        <!-- Slideshow Section (moved to the top) -->
         <div class="relative mb-12">
             <!-- Slideshow container -->
             <div class="relative flex justify-center items-center">
                 <!-- Slides -->
                 <div id="nft-slideshow" class="flex overflow-hidden rounded-lg w-full max-w-[320px]">
-                    <img src="https://picsum.photos/400/800?random=1" alt="NFT 1" class="square-image flex-shrink-0 hidden">
-                    <img src="https://picsum.photos/500/400?random=2" alt="NFT 2" class="square-image flex-shrink-0 hidden">
+                    <img src="https://picsum.photos/400/400?random=1" alt="NFT 1" class="square-image flex-shrink-0 hidden">
+                    <img src="https://picsum.photos/400/400?random=2" alt="NFT 2" class="square-image flex-shrink-0 hidden">
                     <img src="https://picsum.photos/400/400?random=3" alt="NFT 3" class="square-image flex-shrink-0 hidden">
-                    <img src="https://picsum.photos/400/1000?random=4" alt="NFT 4" class="square-image flex-shrink-0 hidden">
-                    <img src="https://picsum.photos/700/400?random=5" alt="NFT 5" class="square-image flex-shrink-0 hidden">
+                    <img src="https://picsum.photos/400/400?random=4" alt="NFT 4" class="square-image flex-shrink-0 hidden">
+                    <img src="https://picsum.photos/400/400?random=5" alt="NFT 5" class="square-image flex-shrink-0 hidden">
                 </div>
                 <!-- Next/Previous Buttons -->
                 <button id="prev-btn" class="absolute top-1/2 left-4 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full">
@@ -77,13 +145,41 @@
             <p class="text-xl">Explore, buy, and sell exclusive NFTs on our platform</p>
         </header>
 
-        <!-- 5 NFT Images in a Row -->
-        <div class="grid grid-cols-5 gap-4 mb-12">
-            <img src="https://picsum.photos/400/800?random=1" alt="NFT 1" class="square-image rounded-lg shadow-lg">
-            <img src="https://picsum.photos/400/2321?random=2" alt="NFT 2" class="square-image rounded-lg shadow-lg">
-            <img src="https://picsum.photos/300/400?random=3" alt="NFT 3" class="square-image rounded-lg shadow-lg">
-            <img src="https://picsum.photos/1000/400?random=4" alt="NFT 4" class="square-image rounded-lg shadow-lg">
-            <img src="https://picsum.photos/400/400?random=5" alt="NFT 5" class="square-image rounded-lg shadow-lg">
+        <!-- 5 NFT Images in a Row with Carousel -->
+        <div class="carousel-nft-wrapper mb-12">
+            <div class="carousel-nft">
+                <div class="carousel-item">
+                    <img src="https://picsum.photos/400/400?random=1" alt="NFT 1" class="square-image rounded-lg shadow-lg">
+                </div>
+                <div class="carousel-item">
+                    <img src="https://picsum.photos/400/400?random=2" alt="NFT 2" class="square-image rounded-lg shadow-lg">
+                </div>
+                <div class="carousel-item">
+                    <img src="https://picsum.photos/400/400?random=3" alt="NFT 3" class="square-image rounded-lg shadow-lg">
+                </div>
+                <div class="carousel-item">
+                    <img src="https://picsum.photos/400/400?random=4" alt="NFT 4" class="square-image rounded-lg shadow-lg">
+                </div>
+                <div class="carousel-item">
+                    <img src="https://picsum.photos/400/400?random=5" alt="NFT 5" class="square-image rounded-lg shadow-lg">
+                </div>
+                <!-- Repeat items for seamless scrolling -->
+                <div class="carousel-item">
+                    <img src="https://picsum.photos/400/400?random=1" alt="NFT 1" class="square-image rounded-lg shadow-lg">
+                </div>
+                <div class="carousel-item">
+                    <img src="https://picsum.photos/400/400?random=2" alt="NFT 2" class="square-image rounded-lg shadow-lg">
+                </div>
+                <div class="carousel-item">
+                    <img src="https://picsum.photos/400/400?random=3" alt="NFT 3" class="square-image rounded-lg shadow-lg">
+                </div>
+                <div class="carousel-item">
+                    <img src="https://picsum.photos/400/400?random=4" alt="NFT 4" class="square-image rounded-lg shadow-lg">
+                </div>
+                <div class="carousel-item">
+                    <img src="https://picsum.photos/400/400?random=5" alt="NFT 5" class="square-image rounded-lg shadow-lg">
+                </div>
+            </div>
         </div>
     </div>
 
