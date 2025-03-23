@@ -106,6 +106,26 @@
         #next-btn {
             right: 10px;
         }
+
+        /* Responsive Styles */
+        /* Adjustments for smaller screens */
+        @media (max-width: 1024px) {
+            /* Tablet */
+            .slideshow img {
+                width: 80%; /* Reduce slideshow image width on tablet */
+            }
+        }
+
+        @media (max-width: 768px) {
+            /* Mobile/Tablet */
+            .slideshow-container {
+                max-width: 100%; /* Make slideshow container full-width on mobile */
+            }
+
+            .slideshow img {
+                width: 100%; /* Make images fit container on mobile */
+            }
+        }
     </style>
 </head>
 <body class="bg-gray-900 text-white">
@@ -118,11 +138,11 @@
 
     <!-- Content Section -->
     <div class="content container mx-auto px-6 py-12">
+        <!-- Slideshow Section (moved to the top) -->
         <div class="relative mb-12">
             <!-- Slideshow container -->
-            <div class="relative flex justify-center items-center">
-                <!-- Slides -->
-                <div id="nft-slideshow" class="flex overflow-hidden rounded-lg w-full max-w-[320px]">
+            <div class="slideshow-container">
+                <div id="nft-slideshow" class="slideshow">
                     <img src="https://picsum.photos/400/400?random=1" alt="NFT 1" class="square-image flex-shrink-0 hidden">
                     <img src="https://picsum.photos/400/400?random=2" alt="NFT 2" class="square-image flex-shrink-0 hidden">
                     <img src="https://picsum.photos/400/400?random=3" alt="NFT 3" class="square-image flex-shrink-0 hidden">
@@ -130,12 +150,8 @@
                     <img src="https://picsum.photos/400/400?random=5" alt="NFT 5" class="square-image flex-shrink-0 hidden">
                 </div>
                 <!-- Next/Previous Buttons -->
-                <button id="prev-btn" class="absolute top-1/2 left-4 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full">
-                    &#60;
-                </button>
-                <button id="next-btn" class="absolute top-1/2 right-4 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full">
-                    &#62;
-                </button>
+                <button id="prev-btn" class="slideshow-button">&#60;</button>
+                <button id="next-btn" class="slideshow-button">&#62;</button>
             </div>
         </div>
 
